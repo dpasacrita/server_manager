@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import time
 app = Flask(__name__)
 
 SERVER_NAME = 'rs2.crownawards.com'
@@ -27,4 +28,4 @@ def login():
 
 @app.route('/button_test')
 def button_test():
-    return render_template('button_test.html', url=SERVER_NAME)
+    return render_template('button_test.html', url=SERVER_NAME, server_time=time.time())
