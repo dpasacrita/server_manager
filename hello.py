@@ -2,8 +2,6 @@ from flask import Flask, request, render_template
 import time
 app = Flask(__name__)
 
-SERVER_NAME = 'rs2.crownawards.com'
-
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
@@ -15,7 +13,7 @@ def hello(name=None):
 
 @app.route('/button_test')
 def button_test():
-    return render_template('button_test.html', url=SERVER_NAME, server_time=time.time())
+    return render_template('button_test.html', server_time=time.time())
 
 @app.route('/start/')
 @app.route('/start/<server>')
