@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
+SERVER_NAME = 'rs2.crownawards.com'
 
 @app.route('/')
 def hello_world():
@@ -23,3 +24,7 @@ def login():
     # the code below is executed if the request method
     # was GET or the credentials were invalid
     return render_template('login.html', error=error)
+
+@app.route('/button_test')
+def button_test():
+    return render_template('button_test.html', url=SERVER_NAME)
