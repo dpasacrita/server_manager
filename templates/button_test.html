@@ -4,14 +4,21 @@
    </head>
 
    <body>
-      <h1>Hello, World!</h1>
+      <h1>Welcome to the Server Manager!</h1>
       <h2>The date and time on the server is: {{ server_time }}</h2>
-      <input type="button" name="button1" value="Test 1"
-             onclick="self.location.href='/test'"
+      <p>Select an option from the list below.</p>
+      <h2>prodbuilders</h2>
+      <p>prodbuilder1</p>
+      <input type="button" name="pb1start" value="Start prodbuilder1"
+             onclick="self.location.href='/pb1start'"
              style="background-color:#3cb371"
              style="color:white; font-weight:bold"onclick>
-      <input type="button" name="button2" value="Test 2"
-             onclick="self.location.href='/test2'"
+      <input type="button" name="pb1stop" value="Stop prodbuilder1"
+             onclick="self.location.href='/pb1stop'"
+             style="background-color:#1ab171"
+             style="color:white; font-weight:bold"onclick>
+      <input type="button" name="pb1restart" value="Restart prodbuilder1"
+             onclick="self.location.href='/pb1restart'"
              style="background-color:#1ab171"
              style="color:white; font-weight:bold"onclick>
    </body>
