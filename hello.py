@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import time
+import remote_command
 app = Flask(__name__)
 
 @app.route('/')
@@ -18,4 +19,10 @@ def button_test():
 @app.route('/start/')
 @app.route('/start/<server>')
 def start(server=None):
+    return 'We\'re gonna start server %s' % server
+
+@app.route('/restart/')
+@app.route('/restart/<server>')
+def restart(server=None):
+    remote_command.run_remote_command(server, 'sudo /usr/sbin/builder_restart.sh')
     return 'We\'re gonna restart server %s' % server
