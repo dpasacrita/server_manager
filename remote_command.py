@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-HOST="prodbuilder1.crownawards.com"
+HOST="storefront@prodbuilder1.crownawards.com"
 # Ports are handled in ~/.ssh/config since we use OpenSSH
 COMMAND="uname -a"
 
