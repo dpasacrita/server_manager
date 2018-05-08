@@ -3,7 +3,7 @@ import sys
 
 HOST="storefront@prodbuilder1.crownawards.com"
 # Ports are handled in ~/.ssh/config since we use OpenSSH
-COMMAND="uname -a"
+COMMAND="sudo /usr/sbin/builder_restart.sh"
 
 ssh = subprocess.Popen(["ssh", "%s" % HOST, COMMAND],
                        shell=False,
