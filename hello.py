@@ -16,6 +16,11 @@ def button_test():
 def start(server=None):
     return 'We\'re gonna start server %s, or we would, but this is still a work in progress! Stick to restarting.' % server
 
+@app.route('/stop/')
+@app.route('/stop/<server>')
+def start(server=None):
+    return 'We\'re gonna stop server %s, or we would, but this is still a work in progress! Stick to restarting.' % server
+
 @app.route('/restart/')
 @app.route('/restart/<server>')
 def restart(server=None):
