@@ -2,16 +2,6 @@
 # Server Manager
 # This script is used by the server manager on RS2 to manage tomcat.
 
-# Load bash profile
-. ~/.bash_profile
-
-# Determine PWD, and time.
-WORK_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/"
-TOMCAT_DIRECTORY="/opt/tomcat/tomcat6/"
-LOG_DIRECTORY="/var/log/"
-LOG_FILE="server_manager.log"
-CURRENT_DATE=$(date)
-
 restart_tomcat() {
     # Determine PID of tomcat
     tomcat_pid="$(ps aux | grep '[t]omcat' | awk '{print $2}')"
@@ -120,3 +110,31 @@ start_tomcat() {
         fi
     fi
 }
+
+# Load bash profile
+. ~/.bash_profile
+
+# Determine PWD, and time.
+WORK_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/"
+TOMCAT_DIRECTORY="/opt/tomcat/tomcat6/"
+LOG_DIRECTORY="/var/log/"
+LOG_FILE="server_manager.log"
+CURRENT_DATE=$(date)
+
+
+while [ "$1" != "" ]; do
+    case $1 in
+    start)
+        start_tomcat
+        ;;
+    stop)
+        stop_tomcat
+        ;;
+    restart)
+        restart_tomcat
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart}"
+        exit 1
+    esac
+done
