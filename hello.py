@@ -7,11 +7,6 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/hello/')
-@app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
-
 @app.route('/button_test')
 def button_test():
     return render_template('button_test.html', server_time=time.time())
@@ -19,7 +14,7 @@ def button_test():
 @app.route('/start/')
 @app.route('/start/<server>')
 def start(server=None):
-    return 'We\'re gonna start server %s' % server
+    return 'We\'re gonna start server %s, or we would, but this is still a work in progress! Stick to restarting.' % server
 
 @app.route('/restart/')
 @app.route('/restart/<server>')
