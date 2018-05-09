@@ -18,7 +18,7 @@ def start(server=None):
 
 @app.route('/stop/')
 @app.route('/stop/<server>')
-def start(server=None):
+def stop(server=None):
     return 'We\'re gonna stop server %s, or we would, but this is still a work in progress! Stick to restarting.' % server
 
 @app.route('/restart/')
