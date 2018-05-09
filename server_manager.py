@@ -14,15 +14,17 @@ def button_test():
 @app.route('/start/')
 @app.route('/start/<server>')
 def start(server=None):
-    return 'We\'re gonna start server %s, or we would, but this is still a work in progress! Stick to restarting.' % server
+    remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh start')
+    return 'We\'re gonna start server %s' % server
 
 @app.route('/stop/')
 @app.route('/stop/<server>')
 def stop(server=None):
-    return 'We\'re gonna stop server %s, or we would, but this is still a work in progress! Stick to restarting.' % server
+    remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh stop')
+    return 'We\'re gonna stop server %s' % server
 
 @app.route('/restart/')
 @app.route('/restart/<server>')
 def restart(server=None):
-    remote_command.run_remote_command(server, 'sudo /usr/sbin/builder_restart.sh')
+    remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh restart')
     return 'We\'re gonna restart server %s' % server
