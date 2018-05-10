@@ -9,7 +9,7 @@ def hello_world():
 
 @app.route('/button_test')
 def button_test():
-    return render_template('button_test.html', server_time=datetime.datetime.now().strftime('%b-%d-%I%M%p-%G'))
+    return render_template('button_test.html', server_time=datetime.date.today.ctime())
 
 @app.route('/start/')
 @app.route('/start/<server>')
