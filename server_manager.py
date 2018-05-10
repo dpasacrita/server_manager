@@ -28,3 +28,6 @@ def stop(server=None):
 def restart(server=None):
     remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh restart')
     return 'We\'re gonna restart server %s' % server
+
+if __name__ == "__main__":
+    app.run()
