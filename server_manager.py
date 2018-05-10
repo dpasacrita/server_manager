@@ -4,12 +4,12 @@ import remote_command
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    return render_template('index.html')
 
-@app.route('/button_test')
-def button_test():
-    return render_template('button_test.html', server_time=datetime.datetime.now())
+@app.route('/prodbuilders')
+def prodbuilders():
+    return render_template('prodbuilders.html', server_time=datetime.datetime.now())
 
 @app.route('/start/')
 @app.route('/start/<server>')
