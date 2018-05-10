@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import time
+import datetime
 import remote_command
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ def hello_world():
 
 @app.route('/button_test')
 def button_test():
-    return render_template('button_test.html', server_time=time.time())
+    return render_template('button_test.html', server_time=datetime.datetime.now().strftime('%b-%d-%I%M%p-%G'))
 
 @app.route('/start/')
 @app.route('/start/<server>')
