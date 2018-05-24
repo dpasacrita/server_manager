@@ -6,6 +6,11 @@
 </head>
 <body>
     <p>Sent a {{ command }} command to server {{ servername }}.</p>
-    <a href="/">Home</a>
+    <button onclick="goBack()">Back</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>
