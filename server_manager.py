@@ -15,19 +15,19 @@ def prodbuilders():
 @app.route('/start/<server>')
 def start(server=None):
     remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh start')
-    return 'We\'re gonna start server %s' % server
+    return render_template('run_remote_command.html', command = 'Start', servername = server)
 
 @app.route('/stop/')
 @app.route('/stop/<server>')
 def stop(server=None):
     remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh stop')
-    return 'We\'re gonna stop server %s' % server
+    return render_template('run_remote_command.html', command = 'Stop', servername = server)
 
 @app.route('/restart/')
 @app.route('/restart/<server>')
 def restart(server=None):
     remote_command.run_remote_command(server, 'sudo /usr/sbin/server_manager.sh restart')
-    return 'We\'re gonna restart server %s' % server
+    return render_template('run_remote_command.html', command = 'Restart', servername = server)
 
 #if __name__ == "__main__":
     #app.run()
