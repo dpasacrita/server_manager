@@ -30,8 +30,9 @@ def run_remote_command2(host, command):
     try:
         result = Connection(host=host, user="storefront").run(command)
         # Now print our findings.
-        msg = "Ran {.command!r} on {.host}, got this stdout:\n{.stdout}"
-        print(msg.format(result))
+        #msg = "Ran {.command!r} on {.host}, got this stdout:\n{.stdout}"
+        #print(msg.format(result))
+        print(result)
     except Exception as e:
         print("ERROR: Unable to run remote command on host %s" % host)
         print(e)
