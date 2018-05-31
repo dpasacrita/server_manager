@@ -29,12 +29,11 @@ def run_remote_command2(host, command):
     # If we get an error, print and error message and exit.
     try:
         result = Connection(host).run(command)
+        # Now print our findings.
+        msg = "Ran {.command!r} on {.host}, got this stdout:\n{.stdout}"
+        print(msg.format(result))
     except:
         print("ERROR: Unable to run remote command on host %s" % host)
-        sys.exit(1)
-    # Now print our findings.
-    msg = "Ran {.command!r} on {.host}, got this stdout:\n{.stdout}"
-    print(msg.format(result))
 
 
 if __name__ == "__main__:":
