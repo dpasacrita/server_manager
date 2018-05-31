@@ -28,7 +28,7 @@ def run_remote_command2(host, command):
     # First lets try running the command, and trap the result.
     # If we get an error, print and error message and exit.
     try:
-        result = Connection(host).run(command)
+        result = Connection(host=host, user="storefront").run(command)
         # Now print our findings.
         msg = "Ran {.command!r} on {.host}, got this stdout:\n{.stdout}"
         print(msg.format(result))
