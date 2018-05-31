@@ -1,5 +1,6 @@
 import subprocess
 import sys
+from fabric import Connection
 
 
 def run_remote_command(host, command):
@@ -20,6 +21,21 @@ def run_remote_command(host, command):
         print("ERROR: %s" % error)
     else:
         print(result)
+
+
+def run_remote_command2(host, command):
+
+    # First lets try running the command, and trap the result.
+    # If we get an error, print and error message and exit.
+    try:
+        result = Connection(host).run(command)
+    except:
+        print("ERROR: Unable to run remote command on host %s" % host)
+        sys.exit(1)
+    # Now print our findings.
+    msg = "Ran {.command!r} on {.host}, got this stdout:\n{.stdout}"
+    print(msg.format(result))
+
 
 if __name__ == "__main__:":
 
