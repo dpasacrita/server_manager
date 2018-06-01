@@ -14,6 +14,11 @@ def prodbuilders():
     return render_template('prodbuilders.html', server_time=datetime.datetime.now())
 
 
+@app.route('/testapis')
+def testapis():
+    return render_template('testapis.html', server_time=datetime.datetime.now())
+
+
 @app.route('/start/')
 @app.route('/start/<server>')
 def start(server=None):
