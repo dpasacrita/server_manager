@@ -10,7 +10,7 @@ def index():
     return render_template('index.html', server_time=datetime.datetime.now())
 
 
-@app.route('/prodbuilders')
+@app.route('/prodbuilders/')
 def prodbuilders():
     return render_template('prodbuilders.html', server_time=datetime.datetime.now())
 
