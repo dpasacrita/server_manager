@@ -15,7 +15,7 @@ def prodbuilders():
     return render_template('prodbuilders.html', server_time=datetime.datetime.now())
 
 
-@app.route('/prodbuilders/server-status')
+@app.route('/prodbuilders/serverstatus')
 def pbserverstatus(host='prodbuilder1'):
     stats = measure_bandwith.read_server_status(host)
     return render_template('pbserverstatus.html', server_status=stats)
