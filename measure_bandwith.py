@@ -13,11 +13,13 @@ def read_server_status(host):
         print(Exception)
         return
 
-    # Try printing the server status to the page as a test
-    print(server_status.text)
-    print("We printed the server-status, I think.")
+    return server_status
 
 
 if __name__ == "__main__:":
 
-    read_server_status("prodbuilder1")
+    pb1 = read_server_status("prodbuilder1")
+
+    # Try printing the server status to the page as a test
+    print(pb1)
+    print("We printed the server-status, I think.")
