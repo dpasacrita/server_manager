@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import datetime
 import remote_command
+import measure_bandwith
 app = Flask(__name__)
 
 
@@ -12,6 +13,12 @@ def index():
 @app.route('/prodbuilders')
 def prodbuilders():
     return render_template('prodbuilders.html', server_time=datetime.datetime.now())
+
+
+@app.route('/prodbuilders/server-status')
+def pbserverstatus():
+    stats = measure_bandwith.read_server_status('prodbuilder1')
+    return render_template('pbserverstatus.html', server_status=stats)
 
 
 @app.route('/testapis')
