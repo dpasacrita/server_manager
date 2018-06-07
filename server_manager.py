@@ -17,7 +17,7 @@ def prodbuilders():
 
 @app.route('/prodbuilders/server-status')
 def pbserverstatus():
-    stats = measure_bandwith.read_server_status('prodbuilder1')
+    #stats = measure_bandwith.read_server_status('prodbuilder1')
     return render_template('pbserverstatus.html', server_status=stats)
 
 
