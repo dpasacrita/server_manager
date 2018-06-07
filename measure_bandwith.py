@@ -15,6 +15,7 @@ def read_server_status(host):
 
     # Try printing the server status to the page as a test
     print(server_status.text)
+    print("We printed the server-status, I think.")
 
 
 if __name__ == "__main__:":
