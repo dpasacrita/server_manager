@@ -36,4 +36,4 @@ def run_remote_command2(host, command):
 
 if __name__ == "__main__:":
 
-    run_remote_command('null', 'null')
+    run_remote_command2('null', 'null')
