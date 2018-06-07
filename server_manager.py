@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import datetime
 import remote_command
 import measure_bandwith
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/')
 
 
 @app.route('/')
@@ -10,7 +10,7 @@ def index():
     return render_template('index.html', server_time=datetime.datetime.now())
 
 
-@app.route('/prodbuilders/')
+@app.route('/prodbuilders')
 def prodbuilders():
     return render_template('prodbuilders.html', server_time=datetime.datetime.now())
 
