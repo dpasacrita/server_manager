@@ -7,7 +7,7 @@ def read_server_status(host):
     url = "http://"+host+".crownawards.com/server-status?auto"
     # Try to open the server status page
     try:
-        server_status = requests.urlopen(url)
+        server_status = requests.get(url)
     except Exception:
         print("ERROR: Unable to load server-status!")
         print(Exception)
