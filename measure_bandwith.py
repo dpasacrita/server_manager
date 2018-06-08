@@ -14,10 +14,17 @@ def read_server_status(host):
         return
 
     # Split the data into a list
-    stats = server_status.text.splitlines()
+    stats = format_stats(server_status.text)
 
     return stats
 
+
+def format_stats(stats):
+
+    # Split the data into a list
+    stats = stats.splitlines()
+
+    return stats
 
 if __name__ == "__main__:":
 
