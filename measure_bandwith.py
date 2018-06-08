@@ -13,7 +13,10 @@ def read_server_status(host):
         print(Exception)
         return
 
-    return server_status.text
+    # Split the data into a list
+    stats = server_status.text.splitlines()
+
+    return stats
 
 
 if __name__ == "__main__:":
