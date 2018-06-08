@@ -13,7 +13,7 @@ def read_server_status(host):
         print(Exception)
         return
 
-    return server_status
+    return server_status.text
 
 
 if __name__ == "__main__:":
