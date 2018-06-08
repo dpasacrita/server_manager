@@ -24,6 +24,8 @@ def format_stats(stats):
     # Split the data into a list
     stats = stats.splitlines()
 
+    # Pop off the Scoreboard, because we don't need it here.
+    stats.pop()
     return stats
 
 
