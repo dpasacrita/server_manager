@@ -26,6 +26,7 @@ def format_stats(stats):
 
     return stats
 
+
 if __name__ == "__main__:":
 
     pb1 = read_server_status("prodbuilder1")
