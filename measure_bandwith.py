@@ -1,5 +1,5 @@
 # Import Statements
-import urllib.request as request
+import requests
 
 
 def read_server_status(host):
@@ -7,7 +7,7 @@ def read_server_status(host):
     url = "http://"+host+".crownawards.com/server-status?auto"
     # Try to open the server status page
     try:
-        server_status = request.urlopen(url)
+        server_status = requests.urlopen(url)
     except Exception:
         print("ERROR: Unable to load server-status!")
         print(Exception)
