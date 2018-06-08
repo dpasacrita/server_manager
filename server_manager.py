@@ -16,8 +16,13 @@ def prodbuilders():
 
 
 @app.route('/prodbuilders/serverstatus')
-def pbserverstatus(host='prodbuilder1'):
-    stats = measure_bandwith.read_server_status(host)
+def pbserverstatus():
+    # Get a list of builders, this will be in a config file later on
+    # For the poor sod who reads this 4 years later and its not in a config file I'm sorry.
+    builders = ['prodbuilder1', 'prodbuilder2', 'prodbuilder3']
+    stats = []
+    for builder in builders:
+        stats.append(measure_bandwith.read_server_status(builder))
     return render_template('pbserverstatus.html', server_status=stats)
 
 
