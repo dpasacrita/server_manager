@@ -8,7 +8,6 @@
     <h1>Prodbuilder Server Stats</h1>
     <h2>The date and time on the server is: {{ server_time }}</h2>
     {% for builder in server_status %}
-        <hx>{{ builder }}</hx>
         <ul style="width:10%; float:left;">
             {% for stat in builder %}
                 <li>{{ stat }}</li>
