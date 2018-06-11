@@ -54,7 +54,7 @@ def calculate_full_stats(stats):
 
     # Finally lets do some final calculations.
     # Get the total megabytes
-    mbytes = kbytes * 1000
+    mbytes = kbytes / 1000
     # Divide CPU by the number of builders to get the average load.
     average_cpu = average_cpu / len(stats)
     # Divide uptime by the number of builders to get the average uptime.
