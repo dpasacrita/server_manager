@@ -29,6 +29,36 @@ def format_stats(stats):
     return stats
 
 
+def calculate_full_stats(stats):
+
+    # We're going to calculate all of our stats one at a time.
+    # First initialize all the variables we need.
+    accesses = 0
+    kbytes = 0
+    average_cpu = 0
+    req_per_sec = 0
+    bytes_per_sec = 0
+    bytes_per_req = 0
+
+    # Now lets fill them all with the builder stats
+    for builder in stats:
+        accesses = accesses + builder[0].split(": ", 1)[1]
+        kbytes = kbytes + builder[1].split(": ", 1)[1]
+        average_cpu = average_cpu + builder[2].split(": ", 1)[1]
+        req_per_sec = req_per_sec + builder[4].split(": ", 1)[1]
+        bytes_per_sec = bytes_per_sec + builder[5].split(": ", 1)[1]
+        bytes_per_req = bytes_per_req + builder[6].split(": ", 1)[1]
+
+    # Finally lets do some final calculations.
+    # Divide CPU by the number of builders to get the average load.
+    average_cpu = average_cpu/len(stats)
+
+    # Fill the list and return it.
+    full_stats = [accesses, kbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req]
+
+    return full_stats
+
+
 if __name__ == "__main__:":
 
     pb1 = read_server_status("prodbuilder1")

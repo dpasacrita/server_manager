@@ -23,7 +23,8 @@ def pbserverstatus():
     stats = []
     for builder in builders:
         stats.append(measure_bandwith.read_server_status(builder))
-    return render_template('pbserverstatus.html', server_status=stats)
+    full_stats = measure_bandwith.calculate_full_stats(stats)
+    return render_template('pbserverstatus.html', server_status=stats, server_status_all=full_stats)
 
 
 @app.route('/testapis')
