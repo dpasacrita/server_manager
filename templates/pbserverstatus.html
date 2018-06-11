@@ -19,11 +19,11 @@
     {% endfor %}
     </div>
     <br>
-    <h3>Stats of all Servers</h3>
-    <ul style="width:10%; float:left;">
-        {% for stat in server_status_all %}
-            <li>{{ stat }}</li>
-        {% endfor %}
-    </ul>
+    <div class="fullstats" style="float: left">
+        <h3>Stats of all Servers</h3>
+        <ul>
+            <li>Total Accesses: {{ server_status_all[0] }}</li>
+        </ul>
+    </div>
 </body>
 </html>

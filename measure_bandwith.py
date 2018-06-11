@@ -42,7 +42,7 @@ def calculate_full_stats(stats):
 
     # Now lets fill them all with the builder stats
     for builder in stats:
-        accesses = accesses + float(builder[0].split(": ", 1)[1])
+        accesses = accesses + int(builder[0].split(": ", 1)[1])
         kbytes = kbytes + float(builder[1].split(": ", 1)[1])
         average_cpu = average_cpu + float(builder[2].split(": ", 1)[1])
         req_per_sec = req_per_sec + float(builder[4].split(": ", 1)[1])
