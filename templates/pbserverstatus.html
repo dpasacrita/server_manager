@@ -9,7 +9,7 @@
     <p>What follows below is the server stats of every builder server at the time of page load.</p>
     <p>They are arranged left to right, one at a time. So the one to the far left is 1, then to the right of it is 2, and so on.</p>
     <p>The full stats of all the builders are calculated below that.</p>
-    <div class="builders">
+    <div class="builders" style="float: left">
     {% for builder in server_status %}
         <ul style="width:10%; float:left;">
             {% for stat in builder %}
