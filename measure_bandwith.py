@@ -42,12 +42,12 @@ def calculate_full_stats(stats):
 
     # Now lets fill them all with the builder stats
     for builder in stats:
-        accesses = accesses + builder[0].split(": ", 1)[1]
-        kbytes = kbytes + builder[1].split(": ", 1)[1]
-        average_cpu = average_cpu + builder[2].split(": ", 1)[1]
-        req_per_sec = req_per_sec + builder[4].split(": ", 1)[1]
-        bytes_per_sec = bytes_per_sec + builder[5].split(": ", 1)[1]
-        bytes_per_req = bytes_per_req + builder[6].split(": ", 1)[1]
+        accesses = accesses + int(builder[0].split(": ", 1)[1])
+        kbytes = kbytes + int(builder[1].split(": ", 1)[1])
+        average_cpu = average_cpu + int(builder[2].split(": ", 1)[1])
+        req_per_sec = req_per_sec + int(builder[4].split(": ", 1)[1])
+        bytes_per_sec = int(bytes_per_sec + builder[5].split(": ", 1)[1])
+        bytes_per_req = int(bytes_per_req + builder[6].split(": ", 1)[1])
 
     # Finally lets do some final calculations.
     # Divide CPU by the number of builders to get the average load.
