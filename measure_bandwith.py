@@ -35,6 +35,7 @@ def calculate_full_stats(stats):
     # First initialize all the variables we need.
     accesses = 0
     kbytes = 0
+    mbytes = 0
     average_cpu = 0
     average_uptime = 0
     req_per_sec = 0
@@ -52,6 +53,8 @@ def calculate_full_stats(stats):
         bytes_per_req = bytes_per_req + float(builder[6].split(": ", 1)[1])
 
     # Finally lets do some final calculations.
+    # Get the total megabytes
+    mbytes = kbytes * 1000
     # Divide CPU by the number of builders to get the average load.
     average_cpu = average_cpu / len(stats)
     # Divide uptime by the number of builders to get the average uptime.
@@ -60,10 +63,10 @@ def calculate_full_stats(stats):
     # Estimate Requests per hour
     req_per_hour = req_per_sec * 3600
     # Estimate kBytes per hour
-    kbytes_per_hour = (req_per_hour * bytes_per_req) / 1000
+    mbytes_per_hour = (req_per_hour * bytes_per_req) / 1000000
 
     # Fill the list and return it.
-    full_stats = [accesses, kbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req, req_per_hour, kbytes_per_hour, average_uptime]
+    full_stats = [accesses, kbytes, mbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req, req_per_hour, mbytes_per_hour, average_uptime]
 
     return full_stats
 
