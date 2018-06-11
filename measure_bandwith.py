@@ -52,9 +52,13 @@ def calculate_full_stats(stats):
     # Finally lets do some final calculations.
     # Divide CPU by the number of builders to get the average load.
     average_cpu = average_cpu/len(stats)
+    # Estimate Requests per hour
+    req_per_hour = req_per_sec*3600
+    # Estimate kBytes per hour
+    kbytes_per_hour = (req_per_hour*bytes_per_req)/1000
 
     # Fill the list and return it.
-    full_stats = [accesses, kbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req]
+    full_stats = [accesses, kbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req, req_per_hour, kbytes_per_hour]
 
     return full_stats
 
