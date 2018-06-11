@@ -36,6 +36,7 @@ def calculate_full_stats(stats):
     accesses = 0
     kbytes = 0
     average_cpu = 0
+    average_uptime = 0
     req_per_sec = 0
     bytes_per_sec = 0
     bytes_per_req = 0
@@ -45,20 +46,24 @@ def calculate_full_stats(stats):
         accesses = accesses + int(builder[0].split(": ", 1)[1])
         kbytes = kbytes + float(builder[1].split(": ", 1)[1])
         average_cpu = average_cpu + float(builder[2].split(": ", 1)[1])
+        average_uptime = average_uptime + float(builder[3].split(": ", 1)[1])
         req_per_sec = req_per_sec + float(builder[4].split(": ", 1)[1])
         bytes_per_sec = bytes_per_sec + float(builder[5].split(": ", 1)[1])
         bytes_per_req = bytes_per_req + float(builder[6].split(": ", 1)[1])
 
     # Finally lets do some final calculations.
     # Divide CPU by the number of builders to get the average load.
-    average_cpu = average_cpu/len(stats)
+    average_cpu = average_cpu / len(stats)
+    # Divide uptime by the number of builders to get the average uptime.
+    average_uptime = average_uptime / len(stats)
+    average_uptime = average_uptime / 3600
     # Estimate Requests per hour
-    req_per_hour = req_per_sec*3600
+    req_per_hour = req_per_sec * 3600
     # Estimate kBytes per hour
-    kbytes_per_hour = (req_per_hour*bytes_per_req)/1000
+    kbytes_per_hour = (req_per_hour * bytes_per_req) / 1000
 
     # Fill the list and return it.
-    full_stats = [accesses, kbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req, req_per_hour, kbytes_per_hour]
+    full_stats = [accesses, kbytes, average_cpu, req_per_sec, bytes_per_sec, bytes_per_req, req_per_hour, kbytes_per_hour, average_uptime]
 
     return full_stats
 
