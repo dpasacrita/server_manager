@@ -51,3 +51,17 @@ def stop(server=None):
 def restart(server=None):
     remote_command.run_remote_command2(server, 'sudo /usr/sbin/server_manager.sh restart')
     return render_template('run_remote_command.html', command='Restart', servername=server)
+
+
+@app.route('/manage/prodproship/')
+@app.route('/manage/prodproship/<server>')
+def prodproship(server=None):
+    remote_command.run_remote_command2(server, 'sudo /usr/sbin/server_manager.sh prodproship')
+    return render_template('run_remote_command.html', command='Switch to Prod Proship', servername=server)
+
+
+@app.route('/manage/testproship/')
+@app.route('/manage/testproship/<server>')
+def testproship(server=None):
+    remote_command.run_remote_command2(server, 'sudo /usr/sbin/server_manager.sh testproship')
+    return render_template('run_remote_command.html', command='Switch to Test Proship', servername=server)

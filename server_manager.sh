@@ -111,6 +111,24 @@ start_tomcat() {
     fi
 }
 
+switch_prod_proship() {
+    # Grab the prod proship file and replace the current file with it.
+    mv "$PROPERTIES_SOURCE"env.properties.prod "$PROPERTIES_DESTINATION"
+
+    # Now restart tomcat like normal.
+    restart_tomcat
+
+}
+
+switch_test_proship() {
+    # Grab the prod proship file and replace the current file with it.
+    mv "$PROPERTIES_SOURCE"env.properties.test "$PROPERTIES_DESTINATION"
+
+    # Now restart tomcat like normal.
+    restart_tomcat
+
+}
+
 # Load bash profile
 . ~/.bash_profile
 
@@ -120,6 +138,8 @@ TOMCAT_DIRECTORY="/opt/tomcat/tomcat6/"
 LOG_DIRECTORY="/var/log/"
 LOG_FILE="server_manager.log"
 CURRENT_DATE=$(date)
+PROPERTIES_DESTINATION="/opt/tomcat/tomcat8/webapps/services/WEB-INF/classes/env.properties"
+PROPERTIES_SOURCE="/opt/resources/"
 
 
 while [ "$1" != "" ]; do
@@ -132,6 +152,12 @@ while [ "$1" != "" ]; do
         ;;
     restart)
         restart_tomcat
+        ;;
+    prodproship)
+        switch_prod_proship
+        ;;
+    testproship)
+        switch_test_proship
         ;;
     *)
         echo $"Usage: $0 {start|stop|restart}"
