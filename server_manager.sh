@@ -114,7 +114,7 @@ start_tomcat() {
 switch_prod_proship() {
     # Grab the prod proship file and replace the current file with it.
     printf "[$CURRENT_DATE] - Updating configuration for prod...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
-    su -c mv "$PROPERTIES_SOURCE"env.properties.prod "$PROPERTIES_DESTINATION" storefront >> "$LOG_DIRECTORY""$LOG_FILE"
+    su -c 'mv "$PROPERTIES_SOURCE"env.properties.prod "$PROPERTIES_DESTINATION"' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
 
     # Now restart tomcat like normal.
     restart_tomcat
@@ -124,7 +124,7 @@ switch_prod_proship() {
 switch_test_proship() {
     # Grab the prod proship file and replace the current file with it.
     printf "[$CURRENT_DATE] - Updating configuration for test...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
-    su -c mv "$PROPERTIES_SOURCE"env.properties.test "$PROPERTIES_DESTINATION" storefront >> "$LOG_DIRECTORY""$LOG_FILE"
+    su -c 'mv "$PROPERTIES_SOURCE"env.properties.test "$PROPERTIES_DESTINATION"' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
 
     # Now restart tomcat like normal.
     restart_tomcat
