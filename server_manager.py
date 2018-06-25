@@ -32,6 +32,11 @@ def testapis():
     return render_template('testapis.html', server_time=datetime.datetime.now())
 
 
+@app.route('/webstore')
+def webstore():
+    return render_template('webstore.html', server_time=datetime.datetime.now())
+
+
 @app.route('/start/')
 @app.route('/start/<server>')
 def start(server=None):
