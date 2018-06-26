@@ -70,3 +70,9 @@ def prodproship(server=None):
 def testproship(server=None):
     remote_command.run_remote_command2(server, 'sudo /usr/sbin/server_manager.sh testproship')
     return render_template('run_remote_command.html', command='Switch to Test Proship', servername=server)
+
+
+@app.route('/amuse/fight/')
+@app.route('/amuse/fight/<monster>')
+def fight(monster=None):
+    return render_template('battle.html', encounter=monster)
