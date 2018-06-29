@@ -105,8 +105,59 @@ class NPC:
         # If so, return a failure.
         if len(self.inventory_list) >= MAX_INVENTORY:
             print("ERROR: Inventory is full! Cannot add item! You'll have to drop something.")
-            exit(1)
+            return
 
         # Now let's add the item.
         self.inventory_list.append(item)
 
+    def inventory_drop_item(self, item):
+        '''
+        Goes through the inventory list and drops the specified item.
+        Will fail if the item does not exist.
+        If there are two items with the same name, it will drop one.
+        :param item:
+        :return:
+        '''
+
+        # If the specified item is not in the inventory list, return an error.
+        if item not in self.inventory_list:
+            print("ERROR: Inventory List does not contain item %s!" % item)
+            return
+        else:
+            self.inventory_list.remove(item)
+
+    def equip_item(self, item):
+        '''
+        First thing this method does is determine if the item is a sword or armor.
+        If it's not, no equipping for you. Error.
+        Then it equips the item, replacing the currently equipped item if need be.
+        :param item:
+        :return:
+        '''
+
+        # If the specified item is not in the inventory list, return an error.
+        if item not in self.inventory_list:
+            print("ERROR: Inventory List does not contain item %s!" % item)
+            return
+
+        # If it's not even a dictionary just stop error there:
+        if type(item) is not dict:
+            print("ERROR: Item %s is not a dictionary and therefore cannot be a sword or armor." % item)
+            return
+        # Make sure there's an "Item Type" variable. If not, error.
+        if "item type" not in item:
+            print("ERROR: Item %s has no item type variable." % item)
+            return
+
+        # Now do one of three things.
+        # If the item is a sword:
+        if item["item type"] == "sword":
+            self.active_weapon = item
+            print("INFO: Made active weapon %s" % item)
+        # If the item is armor:
+        elif item["item type"] == "armor":
+            self.active_armor = item
+            print("INFO: Made active armor %s" % item)
+        else:
+            print("ERROR: Item Type is not sword or armor. Cannot Equip!")
+            return
