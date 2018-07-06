@@ -77,9 +77,15 @@ def setup_scenario():
     return render_template('setup.html')
 
 
-@app.route('/amuse/setup/playerchar')
+@app.route('/amuse/setup/playerchar/')
 def setup_player():
     return render_template('setup_player.html')
+
+
+@app.route('/amuse/setup/savedata/')
+@app.route('/amuse/setup/savedata/<data>/')
+def save_data():
+    return render_template('save_data.html')
 
 
 @app.route('/amuse/fight/')
