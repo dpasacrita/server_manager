@@ -72,6 +72,16 @@ def testproship(server=None):
     return render_template('run_remote_command.html', command='Switch to Test Proship', servername=server)
 
 
+@app.route('/amuse/setup/')
+def setup_scenario():
+    return render_template('setup.html')
+
+
+@app.route('/amuse/setup/playerchar')
+def setup_player():
+    return render_template('setup_player.html')
+
+
 @app.route('/amuse/fight/')
 @app.route('/amuse/fight/<monster>')
 def fight(monster=None):
