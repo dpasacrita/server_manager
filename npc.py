@@ -237,13 +237,8 @@ class NPC:
             print("ERROR: Inventory List does not contain item %s!" % item)
             return
 
-        # If it's not even a dictionary just error there:
-        if type(item) is not dict:
-            print("ERROR: Item %s is not a dictionary and therefore cannot be a sword or armor." % item)
-            return
-        # Make sure there's an "Item Type" variable. If not, error.
-        if "item type" not in item:
-            print("ERROR: Item %s has no item type variable." % item)
+        # We're going to re-validate the item first to make sure it's valid.
+        if self.validate_item(item) is False:
             return
 
         # Now do one of three things.

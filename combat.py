@@ -46,6 +46,7 @@ def roll_damage(weapon):
     :param weapon: The Weapon we're working with here.
     :return: damage: random number in between min and max.
     '''
+
     # Start with Base damage:
     damage = BASE_DAMAGE
 
@@ -73,6 +74,13 @@ def roll_damage(weapon):
 
 
 def calculate_critical(weapon, rolled_damage):
+    '''
+    This method calculates whether or not a critical hit has occurred.
+
+    :param weapon: The Weapon we're dealing with.
+    :param rolled_damage: How much damage was rolled initially.
+    :return: The final calculated damage, whether or not a crit occurred.
+    '''
 
     # Use the rolled damage as a base.
     final_damage = rolled_damage
