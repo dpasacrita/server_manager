@@ -85,7 +85,10 @@ def setup_player():
 @app.route('/amuse/setup/savedata/')
 @app.route('/amuse/setup/savedata/<data>/')
 def save_data(data=None):
-    return render_template('save_data.html', data=data)
+    if data == "player":
+        return render_template('save_data.html', data=data)
+    else:
+        return render_template('battle.html', data=data)
 
 
 @app.route('/amuse/fight/')
