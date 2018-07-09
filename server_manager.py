@@ -8,6 +8,10 @@ import os
 app = Flask(__name__, static_url_path='/')
 
 
+# Globals
+SAVE_DATA_DIR = '/opt/sites/rs2/server_manager/savedata/'
+
+
 @app.route('/')
 def index():
     return render_template('index.html', server_time=datetime.datetime.now())
@@ -101,7 +105,7 @@ def save_data(data=None):
             "skill": request.args.get('skill')
         }
         # Now pickle the stats to player.p
-        #pickle.dump(saved_stats, open("savedata/player.p", "wb"))
+        pickle.dump(saved_stats, open(SAVE_DATA_DIR+"player.p", "wb"))
         return render_template('save_data.html', data=data)
     elif data == "monster":
         # Pickle code to save data here
