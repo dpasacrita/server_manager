@@ -111,6 +111,6 @@ def save_data(data=None):
 
 
 @app.route('/amuse/fight/')
-@app.route('/amuse/fight/<monster.p>')
+@app.route('/amuse/fight/<monster>')
 def fight(monster=None):
     return render_template('battle.html', encounter=monster)
