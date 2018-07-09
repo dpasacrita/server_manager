@@ -101,7 +101,7 @@ def save_data(data=None):
             "skill": request.args.get('skill')
         }
         # Now pickle the stats to player.p
-        pickle.dump(saved_stats, open("savedata/player.p", "wb"))
+        #pickle.dump(saved_stats, open("savedata/player.p", "wb"))
         return render_template('save_data.html', data=data)
     elif data == "monster":
         # Pickle code to save data here
