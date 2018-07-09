@@ -2,6 +2,8 @@ from flask import Flask, request, render_template
 import datetime
 import remote_command
 import measure_bandwith
+import pickle
+import npc
 app = Flask(__name__, static_url_path='/')
 
 
@@ -86,12 +88,28 @@ def setup_player():
 @app.route('/amuse/setup/savedata/<data>/')
 def save_data(data=None):
     if data == "player":
+        # Pickle code to save data here
+        # Let's grab every passed stat
+        saved_stats = {
+            "name": request.args.get('name'),
+            "race": request.args.get('race'),
+            "age": request.args.get('name'),
+            "strength": request.args.get('strength'),
+            "intelligence": request.args.get('intelligence'),
+            "agility": request.args.get('agility'),
+            "skill": request.args.get('skill')
+        }
+        # Now pickle the stats to player.p
+        pickle.dump(saved_stats, open("savedata/player.p", "wb"))
         return render_template('save_data.html', data=data)
+    elif data == "monster":
+        # Pickle code to save data here
+        return render_template('battle.html', data=data)
     else:
         return render_template('battle.html', data=data)
 
 
 @app.route('/amuse/fight/')
-@app.route('/amuse/fight/<monster>')
+@app.route('/amuse/fight/<monster.p>')
 def fight(monster=None):
     return render_template('battle.html', encounter=monster)
