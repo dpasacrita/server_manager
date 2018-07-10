@@ -90,7 +90,7 @@ def setup_player():
 
 
 @app.route('/amuse/setup/monster/')
-def setup_player():
+def setup_monster():
     return render_template('setup_monster.html')
 
 
