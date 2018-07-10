@@ -89,6 +89,11 @@ def setup_player():
     return render_template('setup_player.html')
 
 
+@app.route('/amuse/setup/monster/')
+def setup_player():
+    return render_template('setup_monster.html')
+
+
 @app.route('/amuse/setup/savedata/')
 @app.route('/amuse/setup/savedata/<data>/')
 def save_data(data=None):
@@ -106,10 +111,22 @@ def save_data(data=None):
         }
         # Now pickle the stats to player.p
         pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/savedata/player.p", "w"))
-        return render_template('save_data.html', data=data, test=saved_stats["name"])
+        return render_template('save_data.html', data=data)
     elif data == "monster":
         # Pickle code to save data here
-        return render_template('battle.html', data=data)
+        # Let's grab every passed stat
+        saved_stats = {
+            "name": request.args.get('name'),
+            "race": request.args.get('race'),
+            "age": request.args.get('name'),
+            "strength": request.args.get('strength'),
+            "intelligence": request.args.get('intelligence'),
+            "agility": request.args.get('agility'),
+            "skill": request.args.get('skill')
+        }
+        # Now pickle the stats to monster.p
+        pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/savedata/monster.p", "w"))
+        return render_template('save_data.html', data=data)
     else:
         return render_template('battle.html', data=data)
 
