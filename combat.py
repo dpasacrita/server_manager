@@ -104,3 +104,16 @@ def calculate_critical(weapon, rolled_damage):
         return final_damage
     else:
         return final_damage
+
+
+def inflict_damage(char1, damage):
+
+    # First lets double check that char1 has appropriate health
+    try:
+        health = int(char1.health)
+    except Exception as e:
+        print("FATAL ERROR: %s" % e)
+        print("FATAL ERROR: Problem getting health!")
+        exit(1)
+    # Make sure health is a positive number.
+    

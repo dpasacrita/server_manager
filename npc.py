@@ -85,6 +85,9 @@ class NPC:
         else:
             print("WARN: 'skill' value not in stats. Using default of 1.")
 
+        # Calculate the NPCs Health
+        self.calculate_health()
+
     def get_current_inventory(self):
         '''
         This just returns the npc's current inventory.

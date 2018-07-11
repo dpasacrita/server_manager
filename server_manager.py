@@ -3,13 +3,14 @@ import datetime
 import remote_command
 import measure_bandwith
 import pickle
+from time import sleep
 import npc
 import os
 app = Flask(__name__, static_url_path='/')
 
 
 # Globals
-SAVE_DATA_DIR = '/opt/sites/rs2/server_manager/savedata/'
+SAVE_DATA_DIR = '/opt/sites/rs2/server_manager/data/'
 
 
 @app.route('/')
@@ -94,8 +95,8 @@ def setup_monster():
     return render_template('setup_monster.html')
 
 
-@app.route('/amuse/setup/savedata/')
-@app.route('/amuse/setup/savedata/<data>/')
+@app.route('/amuse/setup/data/')
+@app.route('/amuse/setup/data/<data>/')
 def save_data(data=None):
     if data == "player":
         # Pickle code to save data here
@@ -110,7 +111,7 @@ def save_data(data=None):
             "skill": request.args.get('skill')
         }
         # Now pickle the stats to player.p
-        pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/savedata/player.p", "w"))
+        pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/data/player.p", "w"))
         return render_template('save_data.html', data=data)
     elif data == "monster":
         # Pickle code to save data here
@@ -125,7 +126,7 @@ def save_data(data=None):
             "skill": request.args.get('skill')
         }
         # Now pickle the stats to monster.p
-        pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/savedata/monster.p", "w"))
+        pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/data/monster.p", "w"))
         return render_template('save_data.html', data=data)
     else:
         return render_template('battle.html', data=data)
@@ -135,3 +136,14 @@ def save_data(data=None):
 @app.route('/amuse/fight/<monster>')
 def fight(monster=None):
     return render_template('battle.html', encounter=monster)
+
+
+@app.route('/stream')
+def stream():
+    def generate():
+        with open('console.log') as f:
+            while True:
+                yield f.read()
+                sleep(1)
+
+    return app.response_class(generate(), mimetype='text/plain')
