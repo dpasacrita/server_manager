@@ -141,7 +141,7 @@ def fight(monster=None):
 @app.route('/stream')
 def stream():
     def generate():
-        with open('console.log') as f:
+        with open('data/console.log') as f:
             while True:
                 yield f.read()
                 sleep(1)
