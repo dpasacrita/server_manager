@@ -7,10 +7,12 @@
 <body>
     <p>This will eventually do more.</p>
     <div id="log" name="log" style="border:1px solid black">
-    <textarea id="inlog" name="inlog" style="border:1px solid black">
-        <pre id="output"></pre>
-        <script>
-        var output = document.getElementById('output');
+    <textarea id="outlog" name="outlog" rows="10" cols="50" onclick="this.focus();this.select()"
+              readonly="readonly" style="border:1px solid black">
+    </textarea>
+    </div>
+    <script>
+        var output = document.getElementById.value('outlog');
 
 
         var xhr = new XMLHttpRequest();
@@ -21,7 +23,5 @@
             output.textContent = xhr.responseText;
         }, 1000);
     </script>
-    </textarea>
-    </div>
 </body>
 </html>
