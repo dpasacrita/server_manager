@@ -14,14 +14,13 @@
     <script>
         var output = document.getElementById('outlog');
 
-
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '{{ url_for('stream') }}');
         xhr.send();
+        document.getElementById("outlog").scrollTop = document.getElementById("outlog").scrollHeight;
 
         setInterval(function() {
             output.textContent = xhr.responseText;
-            document.getElementById("outlog").scrollTop = document.getElementById("outlog").scrollHeight
         }, 1000);
     </script>
 </body>
