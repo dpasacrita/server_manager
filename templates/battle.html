@@ -21,9 +21,8 @@
 
         setInterval(function() {
             output.textContent = xhr.responseText;
+            document.getElementById("outlog").scrollTop = document.getElementById("outlog").scrollHeight
         }, 1000);
-
-        document.getElementById("outlog").scrollTop = document.getElementById("outlog").scrollHeight
     </script>
 </body>
 </html>
