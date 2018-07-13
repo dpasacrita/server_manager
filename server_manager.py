@@ -146,4 +146,4 @@ def stream():
                 yield f.read()
                 sleep(1)
 
-    return app.response_class(generate(), mimetype='text/plain')
+    return app.response_class(generate(), mimetype='text/event-stream')
