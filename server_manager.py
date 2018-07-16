@@ -149,3 +149,9 @@ def stream():
                 sleep(1)
 
     return app.response_class(generate(), mimetype='text/event-stream')
+
+
+@app.route('/background_process_test')
+def background_process_test():
+    print("Hello")
+    return "nothing"
