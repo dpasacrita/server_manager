@@ -116,4 +116,3 @@ def inflict_damage(char1, damage):
         print("FATAL ERROR: Problem getting health!")
         exit(1)
     # Make sure health is a positive number.
-    

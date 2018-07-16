@@ -3,6 +3,7 @@ import datetime
 import remote_command
 import measure_bandwith
 import pickle
+import log
 from time import sleep
 import npc
 import os
@@ -135,6 +136,7 @@ def save_data(data=None):
 @app.route('/amuse/fight/')
 @app.route('/amuse/fight/<monster>')
 def fight(monster=None):
+    log.push_to_console("This is a test combat line", "COMBAT")
     return render_template('battle.html', encounter=monster)
 
 
