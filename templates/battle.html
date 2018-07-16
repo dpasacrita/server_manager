@@ -7,7 +7,7 @@
 <body>
     <p>This will eventually do more.</p>
     <div id="log" name="log" style="border:1px solid black">
-    <textarea id="outlog" name="outlog" rows="10" cols="50" onclick="this.focus();this.select()"
+    <textarea id="outlog" name="outlog" rows="20" cols="100" onclick="this.focus();this.select()"
               readonly="readonly" style="border:1px solid black">
     </textarea>
     </div>
@@ -17,10 +17,11 @@
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '{{ url_for('stream') }}');
         xhr.send();
-        output.scrollTop = output.scrollHeight;
 
         setInterval(function() {
             output.textContent = xhr.responseText;
+            // This scrolls the log to the bottom automatically.
+            output.scrollTop = output.scrollHeight;
         }, 1000);
     </script>
 </body>
