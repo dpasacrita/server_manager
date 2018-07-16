@@ -17,10 +17,10 @@
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '{{ url_for('stream') }}');
         xhr.send();
+        output.scrollTop = output.scrollHeight;
 
         setInterval(function() {
             output.textContent = xhr.responseText;
-            output.scrollTop = output.scrollHeight;
         }, 1000);
     </script>
 </body>
