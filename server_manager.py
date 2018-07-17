@@ -130,14 +130,13 @@ def save_data(data=None):
         pickle.dump(saved_stats, open("/opt/sites/rs2/server_manager/data/monster.p", "w"))
         return render_template('save_data.html', data=data)
     else:
-        return render_template('battle.html', data=data)
+        return render_template('console.html', data=data)
 
 
-@app.route('/amuse/fight/')
-@app.route('/amuse/fight/<monster>')
-def fight(monster=None):
+@app.route('/amuse/console/')
+def fight():
     log.push_to_console("This is a test combat line", "COMBAT")
-    return render_template('battle.html', encounter=monster)
+    return render_template('console.html')
 
 
 @app.route('/stream')
@@ -151,7 +150,7 @@ def stream():
     return app.response_class(generate(), mimetype='text/event-stream')
 
 
-@app.route('/ajax', methods = ['POST'])
+@app.route('/ajax', methods=['POST'])
 def ajax_request():
     username = request.form['username']
     return jsonify(username=username)
