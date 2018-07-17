@@ -31,6 +31,7 @@
     function loadXMLDoc()
     {
         var req = new XMLHttpRequest()
+        var output = document.getElementById('outlog');
         req.onreadystatechange = function()
         {
             if (req.readyState == 4)
@@ -42,7 +43,9 @@
                 else
                 {
                     var response = JSON.parse(req.responseText)
-                    document.getElementById('outlog').innerHTML = response.username
+                    output.textContent = response;
+                    // This scrolls the log to the bottom automatically.
+                    output.scrollTop = output.scrollHeight;
                 }
             }
         }
