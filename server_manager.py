@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import datetime
 import remote_command
 import measure_bandwith
@@ -151,7 +151,7 @@ def stream():
     return app.response_class(generate(), mimetype='text/event-stream')
 
 
-@app.route('/background_process_test')
-def background_process_test():
-    print("Hello")
-    return "nothing"
+@app.route('/ajax', methods = ['POST'])
+def ajax_request():
+    username = request.form['username']
+    return jsonify(username=username)
