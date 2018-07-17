@@ -151,7 +151,7 @@ def stream():
     return app.response_class(generate(), mimetype='text/event-stream')
 
 
-@app.route('/ajax', methods = ['POST'])
+@app.route('/ajax', methods=['POST'])
 def ajax_request():
     username = request.form['username']
     return jsonify(username=username)
