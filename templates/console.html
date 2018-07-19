@@ -3,6 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Console</title>
+    <script>
+    function loadXMLDoc()
+    {
+        var req = new XMLHttpRequest()
+        req.onreadystatechange = function()
+        {
+            if (req.readyState == 4)
+            {
+                if (req.status != 200)
+                {
+                    //error handling code here
+                }
+                else
+                {
+                    var response = JSON.parse(req.responseText)
+                    document.getElementById('myDiv').innerHTML = response.username
+                }
+            }
+        }
+
+        req.open('POST', '/ajax')
+        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        var un = document.getElementById('scname').value
+        var sec = document.getElementById('secret').value
+        var postVars = 'username='+un+'&secret='+sec
+        req.send(postVars)
+
+        return false
+    }
+    </script>
 </head>
 <body>
     <p>This will eventually do more.</p>
@@ -26,41 +56,6 @@
         }, 1000);
     </script>
     -->
-
-    <script>
-    function loadXMLDoc()
-    {
-        var req = new XMLHttpRequest()
-        var output = document.getElementById('myDiv');
-        req.onreadystatechange = function()
-        {
-            if (req.readyState == 4)
-            {
-                if (req.status != 200)
-                {
-                    //error handling code here
-                }
-                else
-                {
-                    var response = JSON.parse(req.responseText)
-                    output.append(response);
-                    // This scrolls the log to the bottom automatically.
-                    output.scrollTop = output.scrollHeight;
-                }
-            }
-        }
-
-        req.open('POST', '/ajax')
-        req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-        var un = document.getElementById('scname').value
-        var sec = document.getElementById('secret').value
-        var postVars = 'username='+un+'&secret='+sec
-        req.send(postVars)
-
-        return false
-    }
-    </script>
-
     <h1>Flask AJAX Test</h1>
     <form action="" method="POST">
         <input type="text" name="scname" id="scname">
@@ -68,5 +63,5 @@
         <input type="button" value="Submit" onclick="return loadXMLDoc()">
     </form>
     <div id="myDiv"></div>
-    </body>
+</body>
 </html>
