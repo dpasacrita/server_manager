@@ -20,6 +20,8 @@
                 {
                     var response = JSON.parse(req.responseText)
                     output.append(response.username+"\n")
+                    // This scrolls the log to the bottom automatically.
+                    output.scrollTop = output.scrollHeight;
                 }
             }
         }
