@@ -6,6 +6,7 @@
     <script>
     function loadXMLDoc()
     {
+        var output = document.getElementById('console');
         var req = new XMLHttpRequest()
         req.onreadystatechange = function()
         {
@@ -18,7 +19,7 @@
                 else
                 {
                     var response = JSON.parse(req.responseText)
-                    document.getElementById('myDiv').innerHTML = response.username
+                    output.append(response.username)
                 }
             }
         }
@@ -37,13 +38,13 @@
 <body>
     <p>This will eventually do more.</p>
     <div id="log" name="log" style="border:1px solid black">
-    <textarea id="outlog" name="outlog" rows="20" cols="100" onclick="this.focus();this.select()"
+    <textarea id="console" name="console" rows="20" cols="100" onclick="this.focus();this.select()"
               readonly="readonly" style="border:1px solid black">
     </textarea>
     </div>
     <!--
     <script>
-        var output = document.getElementById('outlog');
+        var output = document.getElementById('console');
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '{{ url_for('stream') }}');
