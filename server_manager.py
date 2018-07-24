@@ -96,8 +96,8 @@ def setup_monster():
     return render_template('setup_monster.html')
 
 
-@app.route('/amuse/setup/data/')
-@app.route('/amuse/setup/data/<data>/')
+@app.route('/amuse/setup/savedata/')
+@app.route('/amuse/setup/savedata/<data>/')
 def save_data(data=None):
     if data == "player":
         # Pickle code to save data here
@@ -133,9 +133,21 @@ def save_data(data=None):
         return render_template('console.html', data=data)
 
 
+@app.route('/amuse/setup/loaddata/')
+@app.route('/amuse/setup/loaddata/<data>/')
+def load_data(data=None):
+    if data == "player":
+        player = pickle.load(open("/opt/sites/rs2/server_manager/data/player.p", "w"))
+        return jsonify(player)
+    elif data == "monster":
+        monster = pickle.load(open("/opt/sites/rs2/server_manager/data/player.p", "w"))
+        return jsonify(monster)
+    else:
+        return "Nothing"
+
+
 @app.route('/amuse/console/')
-def fight():
-    log.push_to_console("This is a test combat line", "COMBAT")
+def console():
     return render_template('console.html')
 
 
