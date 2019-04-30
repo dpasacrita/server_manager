@@ -6,7 +6,7 @@ restart_tomcat() {
     # Determine PID of tomcat
     tomcat_pid="$(ps aux | grep '[t]omcat' | awk '{print $2}')"
     # ERROR HANDLING - If failure, start tomcat
-    if [ -n "$tomcat_pid" ]
+    if [[ -n "$tomcat_pid" ]]
     then
         # Success, keep moving through the script, as this means tomcat is running.
         printf "[$CURRENT_DATE] - Successfully retrieved tomcat pid.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
@@ -16,7 +16,7 @@ restart_tomcat() {
         printf "[$CURRENT_DATE] - Starting tomcat...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
         su -c ''"$TOMCAT_DIRECTORY"'bin/startup.sh' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
         # ERROR HANDLING
-        if [ $? -eq 0 ]
+        if [[ $? -eq 0 ]]
         then
             # Say that it successfully restarted, and exit
 	        printf "[$CURRENT_DATE] - Tomcat has been restarted.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
@@ -32,7 +32,7 @@ restart_tomcat() {
     printf "[$CURRENT_DATE] - Killing tomcat...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
     kill -9 "$tomcat_pid" >> "$LOG_DIRECTORY""$LOG_FILE"
     # ERROR HANDLING
-    if [ $? -eq 0 ]
+    if [[ $? -eq 0 ]]
     then
         printf "[$CURRENT_DATE] - Tomcat process has been killed.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
     else
@@ -42,7 +42,7 @@ restart_tomcat() {
     # Run tomcat as storefront
     su -c ''"$TOMCAT_DIRECTORY"'bin/startup.sh' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
     # ERROR HANDLING
-    if [ $? -eq 0 ]
+    if [[ $? -eq 0 ]]
     then
         # Say that it successfully restarted, and exit
         printf "[$CURRENT_DATE] - Tomcat has been restarted.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
@@ -58,7 +58,7 @@ stop_tomcat() {
     # Determine PID of tomcat
     tomcat_pid="$(ps aux | grep '[t]omcat' | awk '{print $2}')"
     # ERROR HANDLING - If failure, tomcat is already stopped, so stop.
-    if [ -n "$tomcat_pid" ]
+    if [[ -n "$tomcat_pid" ]]
     then
         # Success, keep moving through the script, as this means tomcat is running.
         printf "[$CURRENT_DATE] - Successfully retrieved tomcat pid.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
@@ -73,7 +73,7 @@ stop_tomcat() {
     printf "[$CURRENT_DATE] - Killing tomcat...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
     kill -9 "$tomcat_pid" >> "$LOG_DIRECTORY""$LOG_FILE"
     # ERROR HANDLING
-    if [ $? -eq 0 ]
+    if [[ $? -eq 0 ]]
     then
         printf "[$CURRENT_DATE] - Tomcat process has been killed.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
     else
@@ -86,7 +86,7 @@ start_tomcat() {
     # Check if tomcat is already running by checking for PID.
     tomcat_pid="$(ps aux | grep '[t]omcat' | awk '{print $2}')"
     # ERROR HANDLING - If failure, continue.
-    if [ -n "$tomcat_pid" ]
+    if [[ -n "$tomcat_pid" ]]
     then
         # Success, exit immediately as this means that tomcat is already running.
         printf "[$CURRENT_DATE] - Successfully retrieved tomcat pid.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
@@ -98,7 +98,7 @@ start_tomcat() {
         printf "[$CURRENT_DATE] - Starting tomcat...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
         su -c ''"$TOMCAT_DIRECTORY"'bin/startup.sh' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
         # ERROR HANDLING
-        if [ $? -eq 0 ]
+        if [[ $? -eq 0 ]]
         then
             # Say that it successfully restarted, and exit
 	        printf "[$CURRENT_DATE] - Tomcat has been restarted.\n" >> "$LOG_DIRECTORY""$LOG_FILE"
@@ -111,26 +111,6 @@ start_tomcat() {
     fi
 }
 
-switch_prod_proship() {
-    # Grab the prod proship file and replace the current file with it.
-    printf "[$CURRENT_DATE] - Updating configuration for prod...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
-    su -c 'mv '"$PROPERTIES_SOURCE"'env.properties.prod '"$PROPERTIES_DESTINATION"'' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
-
-    # Now restart tomcat like normal.
-    restart_tomcat
-
-}
-
-switch_test_proship() {
-    # Grab the prod proship file and replace the current file with it.
-    printf "[$CURRENT_DATE] - Updating configuration for test...\n" >> "$LOG_DIRECTORY""$LOG_FILE"
-    su -c 'mv '"$PROPERTIES_SOURCE"'env.properties.test '"$PROPERTIES_DESTINATION"'' storefront >> "$LOG_DIRECTORY""$LOG_FILE"
-
-    # Now restart tomcat like normal.
-    restart_tomcat
-
-}
-
 # Load bash profile
 . ~/.bash_profile
 
@@ -140,11 +120,10 @@ TOMCAT_DIRECTORY="/opt/tomcat/tomcat6/"
 LOG_DIRECTORY="/var/log/"
 LOG_FILE="server_manager.log"
 CURRENT_DATE=$(date)
-PROPERTIES_DESTINATION="/opt/tomcat/tomcat8/webapps/services/WEB-INF/classes/env.properties"
 PROPERTIES_SOURCE="/opt/resources/"
 
 
-while [ "$1" != "" ]; do
+while [[ "$1" != "" ]]; do
     case $1 in
     start)
         start_tomcat
@@ -154,12 +133,6 @@ while [ "$1" != "" ]; do
         ;;
     restart)
         restart_tomcat
-        ;;
-    prodproship)
-        switch_prod_proship
-        ;;
-    testproship)
-        switch_test_proship
         ;;
     *)
         echo $"Usage: $0 {start|stop|restart}"
