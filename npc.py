@@ -31,24 +31,24 @@ class NPC:
         self.active_armor = {}
 
     def calculate_health(self):
-        '''
+        """
         This function calculates the health of the NPC.
         The health formula is defined by:
         strength*10
 
         :return:
-        '''
+        """
 
         self.health = self.strength*10
 
     def set_initial_stats(self, stats):
-        '''
+        """
         This function sets the npc's initial stats given a stat dictionary.
         Name and Race are required. The rest can use defaults but this is not recommended.
 
         :param stats:
         :return:
-        '''
+        """
 
         # First check if the name and race are missing
         # If they're there, fill them in.
@@ -89,48 +89,49 @@ class NPC:
         self.calculate_health()
 
     def get_current_inventory(self):
-        '''
+        """
         This just returns the npc's current inventory.
 
         :return: self.inventory_list
-        '''
+        """
 
         return self.inventory_list
 
     def get_current_weapon(self):
-        '''
+        """
         Returns the active weapon.
 
         :return: self.active_weapon
-        '''
+        """
 
         return self.active_weapon
 
     def get_current_armor(self):
-        '''
+        """
         Returns the active armor.
 
         :return: self.active_armor
-        '''
+        """
 
         return self.active_armor
 
     def get_name(self):
-        '''
+        """
         Returns the name.
 
         :return:
-        '''
+        """
 
         return self.name
 
-    def validate_item(self, item):
-        '''
+    @staticmethod
+    def validate_item(item):
+        """
         Validates that a given item has all the necessary values.
         In theory works for all item types.
 
         :return:
-        '''
+        """
 
         # If it's not even a dictionary just error there:
         if type(item) is not dict:
@@ -186,13 +187,13 @@ class NPC:
             return True
 
     def inventory_add_item(self, item):
-        '''
+        """
         Adds an item to the npc's inventory.
         Will fail if the npc's inventory is full.
 
         :param item:
         :return:
-        '''
+        """
 
         # Check if the npc's inventory is full.
         # If so, return a failure.
@@ -209,14 +210,14 @@ class NPC:
         self.inventory_list.append(item)
 
     def inventory_drop_item(self, item):
-        '''
+        """
         Goes through the inventory list and drops the specified item.
         Will fail if the item does not exist.
         If there are two items with the same name, it will drop one.
 
         :param item:
         :return:
-        '''
+        """
 
         # If the specified item is not in the inventory list, return an error.
         if item not in self.inventory_list:
@@ -226,14 +227,14 @@ class NPC:
             self.inventory_list.remove(item)
 
     def equip_item(self, item):
-        '''
+        """
         First thing this method does is determine if the item is a sword or armor.
         If it's not, no equipping for you. Error.
         Then it equips the item, replacing the currently equipped item if need be.
 
         :param item:
         :return:
-        '''
+        """
 
         # If the specified item is not in the inventory list, return an error.
         if item not in self.inventory_list:

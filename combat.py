@@ -8,13 +8,13 @@ CRITICAL_MULTIPLIER = 2
 
 
 def calculate_weapon_damage(char1):
-    '''
+    """
     Calculate the damage that char1 will do against something
     This is determined by rolling for how much damage char1 does based on their weapon.
 
     :param char1: Damage Dealer
     :return: damage: The damage we've done.
-    '''
+    """
 
     # Start with base damage.
     damage = BASE_DAMAGE
@@ -40,12 +40,12 @@ def calculate_weapon_damage(char1):
 
 
 def roll_damage(weapon):
-    '''
+    """
     Rolls for a random number in between the weapon's minimum and maximum.
 
     :param weapon: The Weapon we're working with here.
     :return: damage: random number in between min and max.
-    '''
+    """
 
     # Start with Base damage:
     damage = BASE_DAMAGE
@@ -74,13 +74,13 @@ def roll_damage(weapon):
 
 
 def calculate_critical(weapon, rolled_damage):
-    '''
+    """
     This method calculates whether or not a critical hit has occurred.
 
     :param weapon: The Weapon we're dealing with.
     :param rolled_damage: How much damage was rolled initially.
     :return: The final calculated damage, whether or not a crit occurred.
-    '''
+    """
 
     # Use the rolled damage as a base.
     final_damage = rolled_damage
